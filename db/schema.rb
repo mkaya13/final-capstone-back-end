@@ -10,9 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_31_080332) do
+ActiveRecord::Schema[7.0].define(version: 6) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doctor_times", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "doctor_id", null: false
+    t.string "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "time_schedule_id", null: false
+    t.index ["doctor_id"], name: "index_doctor_times_on_doctor_id"
+    t.index ["time_schedule_id"], name: "index_doctor_times_on_time_schedule_id"
+  end
+
+  create_table "doctors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "major"
+    t.string "profile_picture"
+    t.float "fees"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "time_schedules", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "from"
+    t.string "to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "doctor_time_id", null: false
+    t.index ["doctor_time_id"], name: "index_time_schedules_on_doctor_time_id"
+  end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,4 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_080332) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "doctor_times", "doctors"
+  add_foreign_key "doctor_times", "time_schedules"
+  add_foreign_key "time_schedules", "doctor_times"
 end
