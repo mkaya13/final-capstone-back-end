@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.0'
+ruby '3.1.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
@@ -43,6 +43,17 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
 
+group :development do
+  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'debug', platforms: %i[mri mingw x64_mingw]
+
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  # gem "rack-mini-profiler"
+
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
@@ -55,5 +66,4 @@ gem 'devise-jwt'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
-# Env v2
-gem 'dotenv-rails', groups: %i[development test production]
+
