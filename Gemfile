@@ -54,3 +54,6 @@ gem 'rack-cors'
 gem 'devise-jwt'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+# Env v2
+gem 'dotenv-rails', groups: %i[development test production]
