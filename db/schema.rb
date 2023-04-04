@@ -10,9 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_31_080332) do
+ActiveRecord::Schema[7.0].define(version: 8) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "description"
+    t.date "date"
+    t.time "time"
+    t.uuid "doctor_id", null: false
+    t.uuid "users_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["users_id"], name: "index_appointments_on_users_id"
+  end
+
+  create_table "doctor_available_times", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.boolean "available"
+    t.uuid "appointments_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointments_id"], name: "index_doctor_available_times_on_appointments_id"
+  end
+
+  create_table "doctor_times", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "doctor_id", null: false
+    t.string "day"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "time_schedule_id", null: false
+    t.index ["doctor_id"], name: "index_doctor_times_on_doctor_id"
+    t.index ["time_schedule_id"], name: "index_doctor_times_on_time_schedule_id"
+  end
+
+  create_table "doctors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "major"
+    t.string "profile_picture"
+    t.float "fees"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "time_schedules", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "from"
+    t.string "to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "doctor_time_id", null: false
+    t.index ["doctor_time_id"], name: "index_time_schedules_on_doctor_time_id"
+  end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,4 +86,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_31_080332) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "doctors"
+  add_foreign_key "appointments", "users", column: "users_id"
+  add_foreign_key "doctor_available_times", "appointments", column: "appointments_id"
+  add_foreign_key "doctor_times", "doctors"
+  add_foreign_key "doctor_times", "time_schedules"
+  add_foreign_key "time_schedules", "doctor_times"
 end

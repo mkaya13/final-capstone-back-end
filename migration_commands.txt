@@ -1,0 +1,5 @@
+rails generate migration CreateDoctor first_name:string last_name:string major:string profile_picture:string fees:float
+rails generate migration CreateDoctorTime doctor:references day:string
+rails generate migration CreateTimeSchedule from:string to:string
+rails generate migration AddTimeScheduleToDoctorTime time_schedule:references
+rails generate migration AddDoctorTimeToTimeSchedule doctor_time:references
