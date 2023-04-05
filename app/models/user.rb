@@ -10,5 +10,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable,
          :jwt_authenticatable, :recoverable, :rememberable, jwt_revocation_strategy: self
 
-  has_many :appointment
+  has_many :appointments
 end
