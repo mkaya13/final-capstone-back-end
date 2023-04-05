@@ -1,4 +1,4 @@
 class Doctor < ApplicationRecord
-    has many :doctor_times
-    has many :appointments
+    has_many :doctor_times
+    has_many :appointments
 end
