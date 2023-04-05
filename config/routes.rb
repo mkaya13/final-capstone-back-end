@@ -11,4 +11,6 @@ registrations: 'users/registrations',
 confirmations: 'users/confirmations',
 passwords: 'users/passwords'
 }
+
+resources :appointments, only: [:index, :create, :destroy]
 end
