@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 8) do
+ActiveRecord::Schema[7.0].define(version: 6) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,10 +38,10 @@ ActiveRecord::Schema[7.0].define(version: 8) do
 
   create_table "doctor_times", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "doctor_id", null: false
+    t.uuid "time_schedule_id", null: false
     t.string "day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "time_schedule_id", null: false
     t.index ["doctor_id"], name: "index_doctor_times_on_doctor_id"
     t.index ["time_schedule_id"], name: "index_doctor_times_on_time_schedule_id"
   end
@@ -57,12 +57,10 @@ ActiveRecord::Schema[7.0].define(version: 8) do
   end
 
   create_table "time_schedules", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "from"
-    t.string "to"
+    t.string "time_from"
+    t.string "time_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "doctor_time_id", null: false
-    t.index ["doctor_time_id"], name: "index_time_schedules_on_doctor_time_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -91,5 +89,4 @@ ActiveRecord::Schema[7.0].define(version: 8) do
   add_foreign_key "doctor_available_times", "appointments", column: "appointments_id"
   add_foreign_key "doctor_times", "doctors"
   add_foreign_key "doctor_times", "time_schedules"
-  add_foreign_key "time_schedules", "doctor_times"
 end
