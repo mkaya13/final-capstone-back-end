@@ -12,5 +12,17 @@ confirmations: 'users/confirmations',
 passwords: 'users/passwords'
 }
 
-resources :appointments, only: [:index, :create, :destroy]
+  resources :appointments, only: [:index, :create, :destroy]
+
+  resources :doctors
+
+  namespace :api do
+    namespace :v1, defaults: { format: :json } do
+      get '/all-doctors', to: 'doctors#index'
+    end
+  end
+  
+
 end
+
+

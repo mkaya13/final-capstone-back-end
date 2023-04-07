@@ -1,0 +1,11 @@
+<h1> Add a new Doctor </h1>
+
+<%= render "form", doctor: @doctor %>
+
+<% @doctors.each do |doctor| %>
+    <%= image_tag(doctor.profile_picture) %>
+    <p> <%=doctor.first_name %></p>
+    <p> <%=doctor.last_name %></p>
+    <p> <%=doctor.major %></p>
+    <p> <%=doctor.fees %></p>
+<% end %>
