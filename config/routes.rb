@@ -12,5 +12,9 @@ confirmations: 'users/confirmations',
 passwords: 'users/passwords'
 }
 
-resources :appointments, only: [:index, :create, :destroy]
+  resources :appointments, only: [:index, :create, :destroy]
+
+  resources :doctors
+  
+
 end
