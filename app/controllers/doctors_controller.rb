@@ -1,11 +1,9 @@
 class DoctorsController < ApplicationController
-
   def index
     @doctors = Doctor.all
   end
 
-  def show
-  end
+  def show; end
 
   # GET /doctors/new
   def new
@@ -20,5 +18,4 @@ class DoctorsController < ApplicationController
   def doctor_params
     params.permit(:first_name, :last_name, :major, :profile_picture, :fees)
   end
-
 end
