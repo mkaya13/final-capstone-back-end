@@ -2,7 +2,8 @@ module Api
     module V1
       class DoctorAppointmentTimesController < ApplicationController
         def index
-          render json: DoctorAppointmentTime.all
+          appointment_times = DoctorAppointmentTime.where(doctor_id: params[:doctor_id])
+          render json: appointment_times
         end
       end
     end
