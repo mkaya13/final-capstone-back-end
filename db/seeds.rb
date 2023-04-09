@@ -2,6 +2,8 @@ first_user = User.create(first_name:"Mert", last_name:"Kaya", email:"mert@hotmai
 
 first_doc = Doctor.create(first_name:"James", last_name:"Bond", major: "neurosurgeon", profile_picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaSeZJ9uHTNOG4Rfn0TlW6ieywFJgsDB0Npmho57aewEmH-p4KtzHGj5jHxVQTw2w2w4c&usqp=CAU", fees: "2000.00")
 
+second_doc = Doctor.create(first_name:"Jack", last_name:"Bauwer", major: "Dentist", profile_picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJW5IT4O0Q4vhItGr2QSdzZh22Ft5HZRYe2g-SWEdxlV1I9aKcYJ4z2NxsOKPu-GNrFJU&usqp=CAU", fees: "1000.00")
+
 first_time_schedule = TimeSchedule.create(time_from:"9:00", time_to:"9:10", doctor: first_doc)
 second_time_schedule = TimeSchedule.create(time_from: "9:10", time_to: "9:20", doctor: first_doc)
 third_time_schedule = TimeSchedule.create(time_from: "9:20", time_to: "9:30", doctor: first_doc)

@@ -18,8 +18,8 @@ passwords: 'users/passwords'
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      get '/all-doctors', to: 'doctors#index'
       get '/doctor-appointment-times', to: 'doctor_appointment_times#index'
+      resources :doctors, only: [:index, :show]
     end
   end
 
