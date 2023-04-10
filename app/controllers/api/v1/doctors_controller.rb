@@ -1,9 +1,13 @@
 module Api
   module V1
     class DoctorsController < ApplicationController
-      # Add sample function to return a random single sample.
       def index
         render json: Doctor.all
+      end
+
+      def show
+        doctor = Doctor.find(params[:id])
+        render json: doctor
       end
     end
   end

@@ -7,5 +7,4 @@ class Appointment < ApplicationRecord
   validates :date, presence: true
   validates :time_from, presence: true
   validates :time_to, presence: true
-  validates :cancelled, presence: true
 end
