@@ -21,6 +21,8 @@ passwords: 'users/passwords'
       resources :doctors, only: [:index, :show] do
         resources :doctor_appointment_times, only: [:index]
       end
+
+      resources :appointments, only: [:create]
     end
   end
 
