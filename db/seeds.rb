@@ -22,4 +22,6 @@ third_doctor_appointment_time = DoctorAppointmentTime.create(doctor_time_id: thi
 # Grab Date from doctor appointment time
 # Grab Time from Time Schedule
 
+puts "Adding appointments"
+
 first_user_first_appointment = Appointment.create(user_id: first_user.id, doctor_id: first_doc.id, doctor_appointment_time_id: first_doctor_appointment_time.id, description: "I have headeche", date: first_doctor_appointment_time.date, time_from: first_time_schedule.time_from, time_to: first_time_schedule.time_to, cancelled: false)
