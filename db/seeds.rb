@@ -1,8 +1,22 @@
 first_user = User.create(first_name:"Mert", last_name:"Kaya", email:"mert@hotmail.com", password:"12345678")
 
-first_doc = Doctor.create(first_name:"James", last_name:"Bond", major: "neurosurgeon", profile_picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaSeZJ9uHTNOG4Rfn0TlW6ieywFJgsDB0Npmho57aewEmH-p4KtzHGj5jHxVQTw2w2w4c&usqp=CAU", fees: "2000.00")
+first_doc = Doctor.create(first_name:"John", last_name:"Smith", major: "Cardiology", profile_picture: "https://www.kindpng.com/picc/m/490-4909569_png-images-of-doctors-group-png-download-free.png", fees: "200.00", available_time: "Mon - Fri, 9am - 5pm")
 
-second_doc = Doctor.create(first_name:"Jack", last_name:"Bauwer", major: "Dentist", profile_picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJW5IT4O0Q4vhItGr2QSdzZh22Ft5HZRYe2g-SWEdxlV1I9aKcYJ4z2NxsOKPu-GNrFJU&usqp=CAU", fees: "1000.00")
+second_doc = Doctor.create(first_name:"Jane", last_name:"Doe", major: "Pediatrics", profile_picture: "https://thumbs.dreamstime.com/b/male-doctor-portrait-isolated-white-background-56744085.jpg", fees: "150.00", available_time: "Tue - Thu, 10am - 6pm")
+
+third_doc = Doctor.create(first_name:"Sarah", last_name:"Lee", major: "Dermatology", profile_picture: "https://www.shutterstock.com/image-photo/portrait-her-she-nicelooking-attractive-260nw-1729215223.jpg", fees: "175.00", available_time: "Mon - Wed, 9am - 3pm")
+
+fourth_doc = Doctor.create(first_name:"Michael", last_name:"Chen", major: "Oncology", profile_picture: "https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png", fees: "250.00", available_time: "Thu - Sat, 10am - 7pm")
+
+fifth_doc = Doctor.create(first_name:"Emily", last_name:"Rodriguez", major: "Psychiatry", profile_picture: "https://thumbs.dreamstime.com/b/portrait-beautiful-asian-woman-doctor-wearing-uniform-sitting-smiling-to-teeth-white-look-camera-feel-happy-218662857.jpg", fees: "150.00", available_time: "Mon - Fri, 11am - 7pm")
+
+sixth_doc = Doctor.create(first_name:"David", last_name:"Kim", major: "Orthopedics", profile_picture: "https://hips.hearstapps.com/hmg-prod/images/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441.jpg", fees: "225.00", available_time: "Mon - Thu, 8am - 4pm")
+
+seventh_doc = Doctor.create(first_name:"Rachel", last_name:"Wong", major: "Gynecology", profile_picture: "https://st2.depositphotos.com/1013513/12104/i/950/depositphotos_121040752-stock-photo-smiling-female-doctors-working-in.jpg", fees: "190.00", available_time: "Mon - Fri, 9am - 5pm")
+
+eighth_doc = Doctor.create(first_name:"William", last_name:"Park", major: "Neurology", profile_picture: "https://t3.ftcdn.net/jpg/02/95/51/80/360_F_295518052_aO5d9CqRhPnjlNDTRDjKLZHNftqfsxzI.jpg", fees: "275.00", available_time: "Wed - Sun, 11am - 7pm")
+
+ninth_doc = Doctor.create(first_name:"Jessica", last_name:"Nguyen", major: "Allergy and Immunology", profile_picture: "https://static.vecteezy.com/system/resources/previews/005/128/689/large_2x/beautiful-woman-doctor-with-hijab-portrait-on-white-background-free-photo.jpg", fees: "150.00", available_time: "Tue - Thu, 8am - 4pm")
 
 first_time_schedule = TimeSchedule.create(time_from:"9:00", time_to:"9:10", doctor: first_doc)
 second_time_schedule = TimeSchedule.create(time_from: "9:10", time_to: "9:20", doctor: first_doc)
