@@ -6,6 +6,7 @@ class CreateDoctor < ActiveRecord::Migration[7.0]
       t.string :major
       t.string :profile_picture
       t.float :fees
+      t.string :available_time
 
       t.timestamps
     end
