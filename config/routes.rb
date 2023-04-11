@@ -19,7 +19,7 @@ passwords: 'users/passwords'
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       resources :doctors, only: [:index, :show] do
-        resources :doctor_appointment_times, only: [:index]
+        resources :doctor_appointment_times, only: [:index, :update]
       end
 
       resources :appointments, only: [:create]
