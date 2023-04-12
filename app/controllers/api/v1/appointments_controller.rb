@@ -1,7 +1,6 @@
 module Api
   module V1
     class AppointmentsController < ApplicationController
-
       def index
         appointments = Appointment.where(user_id: params[:user_id])
         render json: appointments
@@ -11,25 +10,26 @@ module Api
         appointment = Appointment.new(appointments_params)
         doc_available_time = DoctorAppointmentTime.find(appointment.doctor_appointment_time_id)
         if doc_available_time.available
-          if doc_available_time.update(:available => false) && appointment.save
+          if doc_available_time.update(available: false) && appointment.save
             render json: { status: 'Appointment Created' }
           else
             render json: { status: 'error' }
           end
         else
-            render json: { status: 'Appointment taken' }
+          render json: { status: 'Appointment taken' }
         end
       end
 
       def destroy
         appointment = Appointment.find(params[:id])
         doc_available_time = DoctorAppointmentTime.find(appointment.doctor_appointment_time_id)
-        if doc_available_time.update(:available => true) && appointment.destroy
+        if doc_available_time.update(available: true) && appointment.destroy
           render json: { status: 'Appointment cancelled' }
         else
           render json: { status: 'error' }
         end
       end
+
       private
 
       def appointments_params
