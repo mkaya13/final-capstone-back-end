@@ -22,7 +22,7 @@ class DoctorsController < ApplicationController
   def destroy
     @doctor = Doctor.find(params[:id])
     if @doctor.destroy
-      render json: {deleted_doctor: @doctor, message: 'Doctor deleted' }, status: :ok
+      render json: { deleted_doctor: @doctor, message: 'Doctor deleted' }, status: :ok
     else
       render json: { error: 'Doctor deletion failed' }, status: :unprocessable_entity
     end
