@@ -1,4 +1,5 @@
 first_user = User.create(first_name:"Mert", last_name:"Kaya", email:"mert@hotmail.com", password:"12345678")
+second_user = User.create(first_name:"Trust", last_name:"Simeon", email:"trust@hotmail.com", password:"12345678")
 
 first_doc = Doctor.create(first_name:"James", last_name:"Bond", major: "neurosurgeon", profile_picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaSeZJ9uHTNOG4Rfn0TlW6ieywFJgsDB0Npmho57aewEmH-p4KtzHGj5jHxVQTw2w2w4c&usqp=CAU", fees: "2000.00")
 

@@ -22,7 +22,7 @@ passwords: 'users/passwords'
         resources :doctor_appointment_times, only: [:index]
       end
 
-      resources :appointments, only: [:create]
+      resources :appointments, only: [:index, :create]
     end
   end
 

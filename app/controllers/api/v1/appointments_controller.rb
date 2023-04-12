@@ -1,6 +1,12 @@
 module Api
   module V1
     class AppointmentsController < ApplicationController
+
+      def index
+        appointments = Appointment.where(user_id: params[:user_id])
+        render json: appointments
+      end
+
       def create
         appointment = Appointment.new(appointments_params)
         doc_available_time = DoctorAppointmentTime.find(appointment.doctor_appointment_time_id)
