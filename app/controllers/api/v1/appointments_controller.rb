@@ -1,9 +1,15 @@
 module Api
   module V1
     class AppointmentsController < ApplicationController
+      before_action :authenticate_user!
+
       def index
-        appointments = Appointment.where(user_id: params[:user_id])
-        render json: appointments
+        @appointments = current_user.appointments
+        if @appointments.any?
+          render json: @appointments
+        else
+          render json: { error: 'appointments not found' }, status: :not_found
+        end
       end
 
       def create
