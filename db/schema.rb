@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 6) do
     t.string "major"
     t.string "profile_picture"
     t.float "fees"
+    t.string "available_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
