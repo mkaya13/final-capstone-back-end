@@ -15,8 +15,16 @@ module Api
       def create
         appointment = Appointment.new(appointments_params)
         doc_available_time = DoctorAppointmentTime.find(appointment.doctor_appointment_time_id)
+        appointment.date = doc_available_time.date
+        appointment.time_from = doc_available_time.time_from
+        appointment.time_to = doc_available_time.time_to
+        appointment.doctor_id = doc_available_time.doctor_id
+        appointment.cancelled = false
+        appointment.doctor_appointment_time_id = doc_available_time.id
+        appointment.user_id = current_user.id
         if doc_available_time.available
-          if doc_available_time.update(available: false) && appointment.save
+          if appointment.save
+            doc_available_time.update(available: false) 
             render json: { status: 'Appointment Created' }
           else
             render json: { status: 'error' }
@@ -29,7 +37,8 @@ module Api
       def destroy
         appointment = Appointment.find(params[:id])
         doc_available_time = DoctorAppointmentTime.find(appointment.doctor_appointment_time_id)
-        if doc_available_time.update(available: true) && appointment.destroy
+        if appointment.destroy
+          doc_available_time.update(available: true)
           render json: { status: 'Appointment cancelled' }
         else
           render json: { status: 'error' }
@@ -39,8 +48,7 @@ module Api
       private
 
       def appointments_params
-        params.require(:appointment).permit(:description, :date, :time_from, :time_to, :cancelled,
-                                            :doctor_appointment_time_id, :doctor_id, :user_id)
+        params.require(:appointment).permit(:description, :doctor_appointment_time_id)
       end
     end
   end
