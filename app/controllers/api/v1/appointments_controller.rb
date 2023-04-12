@@ -21,6 +21,15 @@ module Api
         end
       end
 
+      def destroy
+        appointment = Appointment.find(params[:id])
+        doc_available_time = DoctorAppointmentTime.find(appointment.doctor_appointment_time_id)
+        if doc_available_time.update(:available => true) && appointment.destroy
+          render json: { status: 'Appointment cancelled' }
+        else
+          render json: { status: 'error' }
+        end
+      end
       private
 
       def appointments_params
