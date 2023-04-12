@@ -1,5 +1,5 @@
 first_user = User.first
-second_user = User.last
+second_user = User.second
 
 first_doc = Doctor.create(first_name:"John", last_name:"Smith", major: "Cardiology", profile_picture: "https://www.kindpng.com/picc/m/490-4909569_png-images-of-doctors-group-png-download-free.png", fees: "200.00", available_time: "Mon - Fri, 9am - 5pm")
 
@@ -45,3 +45,9 @@ fourth_doctor_appointment_time = DoctorAppointmentTime.create(doctor_time_id: fo
 # Grab Time from Time Schedule
 
 first_user_first_appointment = Appointment.create(user_id: first_user.id, doctor_id: first_doc.id, doctor_appointment_time_id: first_doctor_appointment_time.id, description: "I have headeche", date: first_doctor_appointment_time.date, time_from: first_time_schedule.time_from, time_to: first_time_schedule.time_to, cancelled: false)
+
+first_doctor_appointment_time.update(:available => false)
+
+second_user_first_appointment = Appointment.create(user_id: second_user.id, doctor_id: second_doc.id, doctor_appointment_time_id: fourth_doctor_appointment_time.id, description: "I have stomachache", date: fourth_doctor_appointment_time.date, time_from: first_time_schedule.time_from, time_to: first_time_schedule.time_to, cancelled: false)
+
+fourth_doctor_appointment_time.update(:available => false)

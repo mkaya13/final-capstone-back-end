@@ -4,9 +4,9 @@ module Api
       before_action :authenticate_user!
 
       def index
-        @appointments = current_user.appointments
-        if @appointments.any?
-          render json: @appointments
+        appointments = current_user.appointments
+        if appointments.any?
+          render json: appointments
         else
           render json: { error: 'appointments not found' }, status: :not_found
         end
