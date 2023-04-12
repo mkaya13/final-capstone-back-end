@@ -3,10 +3,15 @@ module Api
     class AppointmentsController < ApplicationController
       def create
         appointment = Appointment.new(appointments_params)
-        if appointment.save
-          render json: { status: 'success' }
+        doc_available_time = DoctorAppointmentTime.find(appointment.doctor_appointment_time_id)
+        if doc_available_time.available
+          if doc_available_time.update(:available => false) && appointment.save
+            render json: { status: 'Appointment Created' }
+          else
+            render json: { status: 'error' }
+          end
         else
-          render json: { status: 'error' }
+            render json: { status: 'Appointment taken' }
         end
       end
 
