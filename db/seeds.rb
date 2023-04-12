@@ -1,4 +1,5 @@
-first_user = User.create(first_name:"Mert", last_name:"Kaya", email:"mert@hotmail.com", password:"12345678")
+first_user = User.first
+second_user = User.second
 
 first_doc = Doctor.create(first_name:"John", last_name:"Smith", major: "Cardiology", profile_picture: "https://www.kindpng.com/picc/m/490-4909569_png-images-of-doctors-group-png-download-free.png", fees: "200.00", available_time: "Mon - Fri, 9am - 5pm")
 
@@ -32,17 +33,21 @@ fourth_doctor_time = DoctorTime.create(day: "Wednesday", doctor: second_doc, tim
 # Need to make calculation with respect to days! Fill the time_from and time_to via Doctor Time an Time Schedule Tables OR grab them via Doctor Time an Time Schedule Tables!
 
 first_doctor_appointment_time = DoctorAppointmentTime.create(doctor_time_id: first_doctor_time.id, doctor_id: first_doc.id, date:"10/04/2023", available: true, time_from: first_time_schedule.time_from, time_to: first_time_schedule.time_to)
-puts "1"
+
 second_doctor_appointment_time = DoctorAppointmentTime.create(doctor_time_id: second_doctor_time.id, doctor_id: first_doc.id, date:"10/04/2023", available: true, time_from: second_time_schedule.time_from, time_to: second_time_schedule.time_to)
-puts "2"
+
 third_doctor_appointment_time = DoctorAppointmentTime.create(doctor_time_id: third_doctor_time.id, doctor_id: first_doc.id, date:"10/04/2023", available: true, time_from: third_time_schedule.time_from, time_to: third_time_schedule.time_to)
-puts "3"
+
 fourth_doctor_appointment_time = DoctorAppointmentTime.create(doctor_time_id: fourth_doctor_time.id, doctor_id: second_doc.id, date:"13/04/2023", available: true, time_from: third_time_schedule.time_from, time_to: third_time_schedule.time_to)
 
 # If and only if we have an available row inside doctor_appointment_time table!!
 # Grab Date from doctor appointment time
 # Grab Time from Time Schedule
 
-puts "Adding appointments"
-
 first_user_first_appointment = Appointment.create(user_id: first_user.id, doctor_id: first_doc.id, doctor_appointment_time_id: first_doctor_appointment_time.id, description: "I have headeche", date: first_doctor_appointment_time.date, time_from: first_time_schedule.time_from, time_to: first_time_schedule.time_to, cancelled: false)
+
+first_doctor_appointment_time.update(:available => false)
+
+second_user_first_appointment = Appointment.create(user_id: second_user.id, doctor_id: second_doc.id, doctor_appointment_time_id: fourth_doctor_appointment_time.id, description: "I have stomachache", date: fourth_doctor_appointment_time.date, time_from: first_time_schedule.time_from, time_to: first_time_schedule.time_to, cancelled: false)
+
+fourth_doctor_appointment_time.update(:available => false)

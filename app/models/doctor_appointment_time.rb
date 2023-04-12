@@ -6,5 +6,4 @@ class DoctorAppointmentTime < ApplicationRecord
   validates :doctor_id, presence: true
   validates :date, presence: true
   validates :doctor_time_id, presence: true
-  validates :available, presence: true
 end
