@@ -1,0 +1,35 @@
+<%= form_with(model: doctor) do |form| %>
+    <div class="form-input-fields">
+      <div class="field">
+        <%= form.label :first_name %><br />
+        <%= form.text_field :first_name, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :last_name %><br />
+        <%= form.text_field :last_name, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :profile_picture %><br />
+        <%= form.text_field :profile_picture, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :major %><br />
+        <%= form.text_field :major, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :fees %><br />
+        <%= form.text_field :fees, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :available_time %><br />
+        <%= form.text_field :available_time, autofocus: true, placeholder: 'Tue - Thu, 8am - 4pm' %>
+      </div>
+
+      <%= form.submit %>
+    </div>
+  <% end %>

@@ -1,0 +1,17 @@
+select * from users;
+select * from doctors;
+select * from time_schedules;
+
+
+select doctor_times.id as doctor_times_id, doctor_times.doctor_id, day, regular, time_from, time_to  from doctor_times
+INNER JOIN time_schedules 
+ON doctor_times.time_schedule_id = time_schedules.id
+
+select id as doctor_appointment_times_id, doctor_appointment_times.doctor_id, date, day, ptx.time_from, ptx.time_to, available from doctor_appointment_times
+INNER JOIN 
+(select doctor_times.id as doctor_times_id, doctor_times.doctor_id, day, regular, time_from, time_to  from doctor_times
+INNER JOIN time_schedules 
+ON doctor_times.time_schedule_id = time_schedules.id
+) ptx
+ON doctor_appointment_times.doctor_time_id = ptx.doctor_times_id
+WHERE available = true
