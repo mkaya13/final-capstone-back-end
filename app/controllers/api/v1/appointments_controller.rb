@@ -24,7 +24,7 @@ module Api
         appointment.user_id = current_user.id
         if doc_available_time.available
           if appointment.save
-            doc_available_time.update(available: false) 
+            doc_available_time.update(available: false)
             render json: { status: 'Appointment Created' }
           else
             render json: { status: 'error' }

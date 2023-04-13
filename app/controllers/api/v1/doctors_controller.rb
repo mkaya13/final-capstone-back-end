@@ -7,7 +7,10 @@ module Api
 
       def show
         doctor = Doctor.find(params[:id])
-        render json: doctor
+        render json: {
+          doctor: doctor,
+          doctor_appointment_times: doctor.doctor_appointment_times
+        }
       end
     end
   end
