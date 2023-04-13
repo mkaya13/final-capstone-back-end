@@ -1,8 +1,8 @@
 class Doctor < ApplicationRecord
-  has_many :doctor_times
-  has_many :appointments
-  has_many :time_schedules
-  has_many :doctor_appointment_times
+  has_many :time_schedules, dependent: :destroy, foreign_key: 'doctor_id'
+  has_many :doctor_times, dependent: :destroy, foreign_key: 'doctor_id'
+  has_many :appointments, dependent: :destroy, foreign_key: 'doctor_id'
+  has_many :doctor_appointment_times, dependent: :destroy, foreign_key: 'doctor_id'
 
   validates :first_name, presence: true
   validates :last_name, presence: true
